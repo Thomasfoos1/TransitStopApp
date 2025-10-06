@@ -12,7 +12,7 @@ namespace TransitStopApp.Server.Utility;
 public class TransitStopOperations(TransitStopDbContext dbContext)
     : ITransitStopOperations
 {
-    public async Task<IEnumerable<Stop>> GetAllStopsAsync()
+    public async Task<ICollection<Stop>> GetAllStopsAsync()
     {
         return await dbContext.Stops
             .OrderBy(s => s.StopOrder)
@@ -26,6 +26,7 @@ public class TransitStopOperations(TransitStopDbContext dbContext)
             .OrderBy(t => t.StopMinuteOfDay)
             .FirstOrDefaultAsync();
 
+        // If no stop for current day, get first stop of next day
         stopTime ??= await dbContext.StopTimes
             .Where(t => t.StopId == stopId)
             .OrderBy(t => t.StopMinuteOfDay)

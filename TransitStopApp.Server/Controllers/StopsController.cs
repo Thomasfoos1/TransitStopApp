@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TransitStopApp.Server.DTOs;
 using TransitStopApp.Server.Interfaces;
 using TransitStopApp.Server.Models;
 
@@ -19,9 +20,9 @@ public class StopsController(ITransitStopOperations stopOperations,
     /// <summary>
     /// Fetch all Stops ordered by StopOrder
     /// </summary>
-    /// <returns>An IEnumerable of all the stops</returns>
+    /// <returns>An ICollection of all the stops</returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Stop>>> Get()
+    public async Task<ActionResult<ICollection<Stop>>> GetAllStops()
     {
         var stops = await stopOperations.GetAllStopsAsync();
         return Ok(stops);
@@ -36,9 +37,9 @@ public class StopsController(ITransitStopOperations stopOperations,
     /// or 404 Not Found if no data on the next stop.
     /// </returns>
     [HttpGet("{stopId}/next")]
-    public async Task<ActionResult<string>> GetStop(int stopId)
+    public async Task<ActionResult<NextStopResponse>> GetNextStopTime(int stopId)
     {
-        var currentTime = currentTimeFetcher.Fetch();
+        var currentTime = currentTimeFetcher.Fetch(DateTime.UtcNow);
         var minuteOfDay = timeConverter.TimeOnlyToMinuteOfDay(currentTime);
         var nextStopTime = await stopOperations
             .GetNextStopTimeAsync(stopId, minuteOfDay);
@@ -49,6 +50,6 @@ public class StopsController(ITransitStopOperations stopOperations,
         var nextStopStr = timeConverter.MinuteOfDayToTimeOnly(nextStopTime)
             .ToString("HH:mm");
 
-        return Ok(new { nextStop = nextStopStr });
+        return Ok(new NextStopResponse { NextStop = nextStopStr });
     }
 }

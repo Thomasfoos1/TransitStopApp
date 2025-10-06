@@ -8,6 +8,7 @@ public interface ICurrentTimeFetcher
     /// <summary>
     /// Fetch the current time of day.
     /// </summary>
+    /// <param name="utcNow">Current DateTime in UTC</param>
     /// <returns>A TimeOnly representing the current time of day.</returns>
-    public TimeOnly Fetch();
+    public TimeOnly Fetch(DateTime utcNow);
 }

@@ -10,8 +10,8 @@ public interface ITransitStopOperations
     /// <summary>
     /// Get all stops ordered by StopOrder
     /// </summary>
-    /// <returns>An enumerable of all stops</returns>
-    Task<IEnumerable<Stop>> GetAllStopsAsync();
+    /// <returns>A collection of all stops</returns>
+    Task<ICollection<Stop>> GetAllStopsAsync();
 
     /// <summary>
     /// Find the next stop time for a given stopId and current time.

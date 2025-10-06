@@ -7,9 +7,8 @@ namespace TransitStopApp.Server.Utility;
 /// </summary>
 public class CurrentTimeFetcherPst : ICurrentTimeFetcher
 {
-    public TimeOnly Fetch()
+    public TimeOnly Fetch(DateTime utcNow)
     {
-        var utcNow = DateTime.UtcNow;
         var pstZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
         var pstTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, pstZone);
         return TimeOnly.FromDateTime(pstTime);
