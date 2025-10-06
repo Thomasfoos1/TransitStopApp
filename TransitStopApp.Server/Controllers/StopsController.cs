@@ -8,9 +8,9 @@ namespace TransitStopApp.Server.Controllers;
 /// <summary>
 /// API endpoints for stop data and their next scheduled stop times.
 /// </summary>
-/// <param name="stopOperations"></param>
-/// <param name="timeConverter"></param>
-/// <param name="currentTimeFetcher"></param>
+/// <param name="stopOperations">Service to hanlde Stop and StopTime CRUD operations</param>
+/// <param name="timeConverter">Service to convert between TimeOnly and minute of day</param>
+/// <param name="currentTimeFetcher">Service to fetch the current TimeOnly</param>
 [ApiController]
 [Route("api/[controller]")]
 public class StopsController(ITransitStopOperations stopOperations,
@@ -47,9 +47,9 @@ public class StopsController(ITransitStopOperations stopOperations,
         if (nextStopTime < 0)
             return NotFound("Unable to find next stop time");
 
-        var nextStopStr = timeConverter.MinuteOfDayToTimeOnly(nextStopTime)
+        var nextStopFormatted = timeConverter.MinuteOfDayToTimeOnly(nextStopTime)
             .ToString("HH:mm");
 
-        return Ok(new NextStopResponse { NextStop = nextStopStr });
+        return Ok(new NextStopResponse { NextStop = nextStopFormatted });
     }
 }

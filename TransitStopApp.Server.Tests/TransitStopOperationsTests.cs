@@ -9,7 +9,6 @@ public class TransitStopOperationsTests
     /// <summary>
     /// Test that all stops are returned in order
     /// </summary>
-    /// <returns></returns>
     [Fact]
     public async Task GetAllStopsTest()
     {
@@ -35,8 +34,6 @@ public class TransitStopOperationsTests
     /// Test the next StopTime is returned including returning the next day's earliest StopTime if 
     /// none are left for the current day.
     /// </summary>
-    /// <param name="testCase"></param>
-    /// <returns></returns>
     [Theory]
     [MemberData(nameof(GetNextStopTimeTestData))]
     public async Task GetNextStopTimeTest(StopTimeTestCase testCase)
@@ -75,6 +72,7 @@ public class TransitStopOperationsTests
             }
         };
     }
+
     private static TransitStopDbContext GetContext(IEnumerable<Stop> stops,
         IEnumerable<StopTime> times)
     {

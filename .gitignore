@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/TransitStopApp.Server/Database/transit_stop_db.db-shm
+/TransitStopApp.Server/Database/transit_stop_db.db-wal
+/TransitStopApp.Server/Database/transit_stop_db.db

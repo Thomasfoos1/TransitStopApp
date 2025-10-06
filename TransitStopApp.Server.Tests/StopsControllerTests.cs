@@ -12,7 +12,6 @@ public class StopsControllerTests
     /// <summary>
     /// Test all stops are successfully returned.
     /// </summary>
-    /// <returns></returns>
     [Fact]
     public async Task GetAllStopsTest()
     {
@@ -38,7 +37,6 @@ public class StopsControllerTests
     /// <summary>
     /// Test success is returned when a next stop time is found.
     /// </summary>
-    /// <returns></returns>
     [Fact]
     public async Task GetNextStopTimeSuccess()
     {
@@ -66,7 +64,6 @@ public class StopsControllerTests
     /// <summary>
     /// Test that when no stop is found, a NotFound result is returned.
     /// </summary>
-    /// <returns></returns>
     [Fact]
     public async Task GetNextStopTimeNotFound()
     {

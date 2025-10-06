@@ -9,9 +9,6 @@ public class MinuteOfDayConverterTests
     /// <summary>
     /// Test TimeOnly is successfully converted to minute of day
     /// </summary>
-    /// <param name="hour"></param>
-    /// <param name="minute"></param>
-    /// <param name="expected"></param>
     [Theory]
     [InlineData(0, 0, 0)]
     [InlineData(10, 32, 632)]
@@ -25,9 +22,6 @@ public class MinuteOfDayConverterTests
     /// <summary>
     /// Test that valid minute of day is successfully converted to TimeOnly
     /// </summary>
-    /// <param name="minuteOfDay"></param>
-    /// <param name="expectedHour"></param>
-    /// <param name="expectedMinute"></param>
     [Theory]
     [InlineData(0, 0, 0)]
     [InlineData(827, 13, 47)]
@@ -42,7 +36,6 @@ public class MinuteOfDayConverterTests
     /// <summary>
     /// Test invalid minute of day throws an InvalidOperationException
     /// </summary>
-    /// <param name="minuteOfDay"></param>
     [Theory]
     [InlineData(-10)]
     [InlineData(1440)]

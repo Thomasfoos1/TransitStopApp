@@ -5,5 +5,5 @@
 /// </summary>
 public class NextStopResponse
 {
-    public string NextStop { get; set; }
+    public required string NextStop { get; set; }
 }
