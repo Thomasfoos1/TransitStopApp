@@ -40,7 +40,7 @@ public class StopsControllerTests
     [Fact]
     public async Task GetNextStopTimeSuccess()
     {
-        var expectedResult = "07:33";
+        var expectedResult = "7:33 AM";
 
         var curTimeOnly = new TimeOnly(7, 15);
         var curMinute = 435;

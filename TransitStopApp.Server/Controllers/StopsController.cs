@@ -48,7 +48,7 @@ public class StopsController(ITransitStopOperations stopOperations,
             return NotFound("Unable to find next stop time");
 
         var nextStopFormatted = timeConverter.MinuteOfDayToTimeOnly(nextStopTime)
-            .ToString("HH:mm");
+            .ToString("h:mm tt");
 
         return Ok(new NextStopResponse { NextStop = nextStopFormatted });
     }
