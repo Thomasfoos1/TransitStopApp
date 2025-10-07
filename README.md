@@ -12,7 +12,7 @@ To ensure that production users can access the stop information under heavy load
 For the database, The SQLite db could be swapped with a high performing and scalable relational DB such as SQL Server or PostgreSQL. Both DBs are good options and the decision would come down to factors such as standardization, cost, etc. 
 
 **3. If you used AI tools, which ones and how?**  
-For this assessment, I used ChatGPT to assist with the frontend. For example, I used it to with help structuring and apply minimal styling to the HTML. On the backend, I also utilized ChatGPT as a better version of Stack Overflow. For example, I was able to get infomation on the Entity Framework `.EnsureCreated()` method and how this method will create an SQLite DB if it doesn't already exist.
+For this assessment, I used ChatGPT to assist with the frontend. For example, I used it to with help structuring and apply minimal styling to the HTML. On the backend, I also utilized ChatGPT as a better version of Stack Overflow. For example, I was able to get information on the Entity Framework `.EnsureCreated()` method and how this method will create an SQLite DB if it doesn't already exist.
 
 ## API Endpoints
 
@@ -49,6 +49,9 @@ On the first run, the server will initialize the SQLite db in the `Database` fol
 **StopTime Table**: Scheduled stop time at a specific stop referencing the Stop table by `StopId`.
 - `StopMinuteOfDay` stores the stop time in minutes since midnight for fast time comparison operations.
 - An index on the StopTime table, (StopId, StopMinuteOfDay) is used to improve from `O(n)` to `O(log(n))` time complexity when querying next stop.
+
+## Unit Testing
+The `StopsController` class relies on several services that are provided with DI. Each of these low-level services has their own individual tests. Each controller endpoint also has high-level tests, using Moq to cover all scenarios without the overhead of configuring real dependencies.
 
 ## Exception Handling
 There is intentionally no exception handling, as ASP.NET will return a 500 error from any endpoint that throws an exception. In production, there will likely need to be extra middleware added to correctly log exceptions. Any exceptions that can be handled with additional logic can be handled in the individual classes.
